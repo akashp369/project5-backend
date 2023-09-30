@@ -29,14 +29,7 @@ const createSeller= asynchandler(async(req, res)=>{
             mobileNo:mobileNo
         })
         const savedSeller= await newSeller.save();
-        if(savedSeller){
-            const token= jwt(savedSeller._id)
-            const result={
-                seller:savedSeller,
-                token:token
-            }
-            response.successResponse(res, result, "Seller Successfully Created.")
-        }
+        response.successResponse(res, savedSeller, "Seller Successfully Created.")
     } catch (error) {
         response.internalServerError(res, 'failed to create a seller');
     }
